@@ -1,5 +1,192 @@
-\chapter{Proof of xyz}
+\chapter{Appendices}
 \label{appendix}
+\section{Huckel}
 \thispagestyle{myheadings}
+The Huckel Approximation Method is based off the Huckel Molecular Orbital Theory model which uses the $\pi$-orbitals of a conjugated system to approximate the Hamiltonian and its corresponding eigenenergies. The $\pi$-orbitals turn out to be the highest occupied orbitals with the $\sigma$-orbitals being more strongly bound. As a result, the forming and breaking of bonds from resonance structures is easier to describe with the breaking and making of $\pi$ bonds than $\sigma$-bonds. \newline
 
-This is the appendix.
+The approximation of Huckel Theory can be outlined in Molecular Orbital Theory \newline 
+\begin{enumerate}
+    \item \textbf{Define a basis of atomic orbitals} Since the Huckel Model is taking into account $\pi_{z}$ orbitals, we create MOs as a linear combination of $p_{z}$ orbitals. Assuming $N$ carbon atoms, each contributing a $p_{z}$ orbital then we write the $\mu$th MOs as: 
+    \begin{equation}
+        \pi^{\mu} = \sum_{i=1}^{N} c_{i}^{\mu}p_{z}^{i}
+    \end{equation}
+    \item \textbf{Compute relevant matrix representations} We use big approximations to make the algebra easier. We have two matrices $\textbf{H}$ and $\textbf{S}$ which involve integrals between $p_{z}$ orbitals on different atoms:
+    \begin{equation}
+        H_{ij} = \int p_{z}^{i} \hat{H} p_{z}^{j} d\tau
+    \end{equation}
+    \begin{equation}
+        S_{ij} = \int p_{z}^{i}  p_{z}^{j} d\tau
+    \end{equation}
+    The first approximation is that $p_{z}$ orbitals are \textbf{orthonormal}
+    \begin{equation}
+        S_{ij} = \begin{cases}  1 & i=j \\ 0 & i \neq j \end{cases}
+    \end{equation}
+    Since $\textbf{S}$ represents an identity operator, we reduce our generalized eigenvalue problem to a normal eigenvalue problem 
+    \begin{equation}
+        \textbf{H} \cdot \textbf{c}^{\alpha} = E_{\alpha} \textbf{S}\cdot \textbf{c}^{\mu} \rightarrow \textbf{H} \cdot \textbf{c}^{\mu} = E_{\mu}c^{\mu} 
+    \end{equation}
+    The second approximation is to assume that any Hamiltonian integrals \textbf{vanish} if they involve atoms $i,j$ that are not nearest neighbors because if $p_{z}$ orbitals are far apart, there is little spatial overlap leading to the integrand being near zero everywhere. Note that diagonal terms must be the same as it involves the average energy of an electron in a carbon $p_{z}$ orbital:
+    \begin{equation}
+        H_{ii} = \int p_{z}^{i} \hat{H} p_{z}^{i} d\tau  = \alpha
+    \end{equation}
+    Since it describes the energy of an electron on a single carbon, $\alpha$ is the sometimes referred to as the on-site energy. Any two nearest neighbours will produced a constant 
+    \begin{equation}
+        H_{ij} = \int p_{z}^{i} \hat{H} p_{z}^{i} d\tau  = \beta
+    \end{equation}
+    The nearest neighbor approximation is good as long as the C-C bond lengths in the molecules are all nearly equal. If there is any significant bond length alternation, then this approximation can be relaxed to allow $\beta$ to depend on the C-C bond distance. $\beta$ will allow us to describe the electron delocalization that comes from multiple resonance structures. There is often debate for the right parameters, usually they are taken to be $\alpha =-11.2 \si{eV}$ and $\beta = -0.7 \si{eV}$
+    \item \textbf{Solve generalized eigenvalue problem} 
+    \item \textbf{Occupy orbitals according to the stick diagram} We note that from $N p_{z}$ orbitals , we obtain $N \pi$ orbitals. Each carbon has one free valence electron to contribute, for a total of $N$ electrons that will need to be accounted for (assuming the molecule is neutral). If one accounts spin, then there are $N/2$ occupied MO's and $N/2$ unoccupied ones. For the ground state, we of course occupy the lowest energy orbitals.
+    \item \textbf{Compute the energy} Since it's a approximate form of MO Theory, Huckel uses the non-interacting electron energy expression:
+    \begin{equation}
+        E_{tot} = \sum_{i=1}^{N} E_{i}
+    \end{equation}
+    Where $E_{i}$ are the MO eigenvalues determined in the third step.
+\end{enumerate}
+In the context of a benzene molecule let's try this out \newline
+\begin{enumerate}
+    \item Represent the MOs as a linear combination of 6 $p_{z}$ orbitals
+    \begin{equation}
+        \psi^{\mu} = \sum_{i=1}^{6} c_{i}^{\mu} c_{i}^{\mu}p_{z}^{i} \rightarrow \textbf{c}^{\mu} = (c_{1}^{\mu}, c_{2}^{\mu}, c_{3}^{\mu}, c_{4}^{\mu}, c_{5}^{\mu}, c_{6}^{\mu})^{T}
+    \end{equation}
+    \item The Hamiltonian following the rules becomes the following
+    \begin{equation}
+         H = 
+        \begin{pmatrix}
+        \alpha & \beta & 0 & 0 & 0 & \beta \\
+        \beta & \alpha & \beta & 0 & 0 & 0 \\
+        0 & \beta & \alpha & \beta & 0 & 0 \\
+        0 & 0 & \beta & \alpha & \beta & 0 \\
+        0 & 0 & 0 & \beta & \alpha & \beta \\
+        \beta & 0 & 0 & 0 & \beta & \alpha \\
+        \end{pmatrix}
+    \end{equation}
+    \item Solving the eigenvalue problem we get the 4 distinct energies (total 6 - two 2-fold degeneracies and 2 non-degeneate values)
+    \begin{equation}
+        E_{1} = \alpha + 2\beta
+    \end{equation}
+    \begin{equation}
+        E_{2} = E_{3} = \alpha + \beta
+    \end{equation}
+    \begin{equation}
+        E_{4} = E_{5} = \alpha - \beta
+    \end{equation}
+    \begin{equation}
+        E_{6} = \alpha - 2\beta
+    \end{equation}
+    \item The Corresponding EIgenvectors are then
+    \begin{equation}
+    c^{1}= \frac{1}{\sqrt{6}}
+        \begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ \end{pmatrix}
+    c^{2} = \frac{1}{\sqrt{12}}
+        \begin{pmatrix} 1 \\ 2 \\ 1 \\ -1 \\ -2 \\ -1 \\ \end{pmatrix}
+    c^{3} = \frac{1}{\sqrt{4}}
+        \begin{pmatrix} 1 \\ 0 \\ -1 \\- 1 \\ 0 \\ 1 \\ \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+    c^{4} = \frac{1}{\sqrt{4}}
+        \begin{pmatrix} 1 \\ 0 \\ -1 \\ 1 \\ 0 \\ -1 \\ \end{pmatrix}
+    c^{5} =     \frac{1}{\sqrt{12}}
+        \begin{pmatrix} 1 \\ -2 \\ 1 \\ 1 \\ -2 \\ 1 \\ \end{pmatrix}
+    c^{6} = \frac{1}{\sqrt{6}}
+        \begin{pmatrix} 1 \\ -1 \\ 1 \\ -1 \\ 1 \\ -1 \\ \end{pmatrix}
+    \end{equation}
+    \item Given that there are 6 $\pi$ electrons in Benzene, the first 3 MOs are doubly occupied.
+    \item The total Huckel Energy is then
+    \begin{equation}
+        E = 2E_{1} + 2E_{2} + 2E_{3} = 6\alpha + 8 \beta
+    \end{equation}
+\end{enumerate}
+
+
+
+
+
+
+
+\section{Matrix Logarithm}
+Unlike the scalar logarithm, there are no naturally-defined bases for the matrix logarithm, therefore the matrix logarithm is taken to be the natural logarithm. In general there may be an infinite number of matrices $B$ satisfying $e^{B} = A$, these are known as the logarithms of A. \newline
+The matrix logarithm like the scalar natural log, can be defined as a power series when $A$ is a square matrix and $||I-A||_{F} < 1$ where $|| \cdot ||_{F}$ is the Frobenius matrix norm. The logarithm this formula provides is known as the principle logarithm of $A$:
+\begin{equation}
+    \log(A) = -\sum_{k=1}^{\infty} \frac{(I-A)^{k}}{k} = log(I+X) = \sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k}X^{k}
+\end{equation}
+Since the series expansion does not converge for all $A$, it is not a global inverse function for the matrix exponential. In particular $e^{\log A} =A$ only holds for  $||I-A||_{F} < 1$ and $\log(\exp A) = A$ only holds for $||A||_{F} < 2$. \newline
+There are other ways of calculating it such as a contour integral. An analytical function $f$ of a square matrix $A$ can be represented as
+\begin{equation}
+    f(A) = \frac{1}{2\pi i} \oint_{\Gamma} f(z) (zI - A)^{-1} dz
+\end{equation} 
+Where $\Gamma$ is a closed contour lying in the region of analyticity of $f$ and winding once around the spectrum $\sigma(A)$ in the counterclockwise directin. 
+
+\newpage
+\section{Engineering Requirements}
+
+\begin{center}
+\begin{tabular}{ | m{6em} | m{12cm} |}
+ \hline
+ \textbf{Component} & \textit{Directionally-unbiased Optical Multiport (Triangular 3-port)} \\
+ \hline
+ Function  & Simulation of an electron system through photons undergoing quantum walks in a physical space  \\
+\hline
+Objective & Photons can leave/enter from the same port and go to any of the other ports, allowing for better random walks and scattering. \\
+\hline
+Constraints & The coherence length (propagation distance for which a coherent wave stays at a degree of coherence) of the photons. The coherence time for this multiport is found to be  $\approx 1 \si{ps}$ with a coherence length of about $10^{-4} \si{m}$. Ample coherence of the photons of the is required to have a well-defined phase during the walk. The number of steps for which coherence is able to be maintained will limit the accuracy of the results. \\
+\hline
+\end{tabular}
+\end{center}
+\newpage
+
+\begin{center}
+    \begin{tabular}{|m{6em}| m{12cm}|}
+    \hline 
+    \textbf{Component} & \textit{Beam Splitter} \\
+    \hline
+    Function & Split an incident light beam (i.e. laser) into two or more beams which may or may not have the same optical power. \\
+    \hline
+    Objective & The inclusion of a partially reflective mirror or some other medium at some angle of incident to split the beam. If the beam splitter is directionally-unbiased, there is reversibility (i.e. photons that enter through the same port, have the option to exit out back the same port). \\
+    \hline
+    Constraints & Angle of incident must be adjusted accordingly as well as the reflectivity dependence on the polarization state of an incident beam. \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|m{6em}|m{12cm}|}
+    \hline
+    \textbf{Component} & \textit{Fibers (Lossless, Optical Circulator)} \\
+    \hline
+    Function & Transmit light between two ends (Control optical signals/photons from one end to the next exit port in the circulator)\\
+    \hline
+    Objective & Allows optical communication with low loss of power (dB)\\
+    \hline 
+    Constraints & Insertion loss leads to reduction in optical power. \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|m{6em}|m{12cm}|}
+    \hline
+    \textbf{Component} & \textit{Optical Mirrors} \\
+    \hline
+    Function & To reflect light\\
+    \hline
+    Objective & Contain a type of reflective coating to ensure high reflectivity of a required wavelength or wavelength range.\\
+    \hline 
+    Constraints & Specific coatings require specific thermal expansion coefficients as well as the possibility of partial transmission of light. \\
+    \hline
+    \end{tabular}
+\end{center}
+\newpage
+
+\begin{center}
+    \begin{tabular}{|m{6em}|m{12cm}|}
+    \hline
+    \textbf{Component} & \textit{$633 \si{nm}$ Long Coherent Length Laser} \\
+    \hline 
+    Function & To deliver a incident beam of photons into a optical system/circuit. \\ 
+    \hline
+    Objective & A stream of photons that can circulate around a optical circuit with a long coherence length so that photon states will be distinguishable. \\
+    \hline
+    Constraints &  The coherence length (propagation distance for which a coherent wave stays at a degree of coherence) of the photons. \\
+    \hline
+    \end{tabular}
+\end{center}

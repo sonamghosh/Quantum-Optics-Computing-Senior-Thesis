@@ -22,7 +22,7 @@
 \usepackage{lscape,afterpage}
 \usepackage{xspace}
 \usepackage{epstopdf} 
-\usepackage{subfig}
+%\usepackage{subfig}
 %==========================================================================%
 %%% graphicx and pdf creation
 \usepackage{graphicx}
@@ -38,6 +38,28 @@
 %linkbordercolor={0 0 1},%          % blue frames around links
 %pdfborder={0 0 112.0}]{hyperref}%  % border-width of frames 
 %                                   % will be multiplied with 0.009 by ps2pdf
+
+
+% Sonams Added Packages
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}    % Makes ToC clickable
+            
+
+\usepackage{braket}  % Braket Notation
+\usepackage{tikz} % figures
+\usetikzlibrary{arrows,positioning} % figures
+\usepackage{subcaption} % subfigures
+\usepackage[linesnumbered,ruled]{algorithm2e} % Algorithm tables
+\usepackage{blkarray}  % Block Arrays
+\usepackage{multirow} % multiple rows
+\usepackage{ragged2e} % tabling formatting
+\usepackage{longtable}
+\usepackage{tabu} % tables
+\usepackage{siunitx} % si units
+
 %\hypersetup{
 %  pdfauthor   = {Joe Graduate <joe.graduate@bu.edu>},
 %  pdftitle    = {dissertation.pdf},
